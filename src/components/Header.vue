@@ -4,10 +4,7 @@
       <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
         <div class="flex justify-start lg:w-0 md:flex-1">
           <router-link to="/" class="flex items-center text-lg font-bold">
-            <img
-              class="h-10 w-auto rounded-full"
-              src="https://lh3.googleusercontent.com/ogw/ADea4I6NxmuUl03mhsD7Ut65unktKpcebN4jo4aVBY0o"
-            />
+            <img class="h-10 w-auto rounded-full" src="@/images/avatar.jpg" />
             <span class="ml-3">Beytullah Akalan</span>
           </router-link>
         </div>
@@ -147,7 +144,7 @@
 
 <script>
 import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/vue'
-import { CursorClickIcon, MenuIcon, XIcon } from '@heroicons/vue/outline'
+import { ViewGridIcon, BriefcaseIcon, MenuIcon, XIcon } from '@heroicons/vue/outline'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
 
 const categories = [
@@ -155,7 +152,13 @@ const categories = [
     name: 'Oyunlar',
     description: 'En güncel pc oyunları',
     to: '/games',
-    icon: CursorClickIcon,
+    icon: ViewGridIcon,
+  },
+  {
+    name: 'Programlar',
+    description: 'İşinize yarayabilecek programlar',
+    to: '/programs',
+    icon: BriefcaseIcon,
   },
 ]
 

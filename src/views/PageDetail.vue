@@ -18,42 +18,36 @@
               <a class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">Açıklama</a>
             </div>
             <p class="leading-relaxed mb-4">
-              Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY.
-              XOXO fam inxigo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric.
-              Gastropub blue bottle austin listicle pour-over, neutra jean.
+              {{ data.description }}
             </p>
             <div v-if="data.ram" class="flex border-t border-gray-200 py-2">
               <span class="text-gray-500">Ram</span>
               <span class="ml-auto text-gray-900">{{ data.ram }}</span>
             </div>
-            <div v-if="data.platform" class="flex border-t border-gray-200 py-2">
-              <span class="text-gray-500">Platform</span>
-              <span class="ml-auto text-gray-900">{{ data.platform }}</span>
-            </div>
             <div v-if="data.processor" class="flex border-t border-gray-200 py-2">
               <span class="text-gray-500">İşlemci</span>
               <span class="ml-auto text-gray-900">{{ data.processor }}</span>
             </div>
-            <div v-if="data.file_size" class="flex border-t border-gray-200 py-2">
+            <div v-if="data.fileSize" class="flex border-t border-gray-200 py-2">
               <span class="text-gray-500">Dosya boyutu</span>
-              <span class="ml-auto text-gray-900">{{ data.file_size }}</span>
+              <span class="ml-auto text-gray-900">{{ data.fileSize }}</span>
             </div>
             <div v-if="data.storage" class="flex border-t border-gray-200 py-2">
               <span class="text-gray-500">Depolama</span>
               <span class="ml-auto text-gray-900">{{ data.storage }}</span>
             </div>
-            <div v-if="data.display_card" class="flex border-t border-gray-200 py-2">
+            <div v-if="data.displayCard" class="flex border-t border-gray-200 py-2">
               <span class="text-gray-500">Ekran kartı</span>
-              <span class="ml-auto text-gray-900">{{ data.display_card }}</span>
+              <span class="ml-auto text-gray-900">{{ data.displayCard }}</span>
             </div>
-            <div v-if="data.password" class="flex border-t border-gray-200 py-2">
+            <div v-if="data.filePassword" class="flex border-t border-gray-200 py-2">
               <span class="text-gray-500">Rar şifresi</span>
-              <span class="ml-auto text-gray-900">{{ data.password }}</span>
+              <span class="ml-auto text-gray-900">{{ data.filePassword }}</span>
             </div>
             <div class="border-t border-gray-200 py-2"></div>
             <div class="flex">
               <a
-                :href="data.link"
+                :href="data.downloadLink"
                 target="__blank"
                 class="
                   flex
@@ -72,7 +66,7 @@
               </a>
             </div>
           </div>
-          <img class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="data.img" />
+          <img class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="data.image" />
         </div>
       </div>
     </section>
@@ -96,12 +90,12 @@ export default {
     }
   },
   created() {
-    get(ref(getDatabase(app), `beytullah-website/${this.$route.params.title}`))
+    get(ref(getDatabase(app), `beytullah-website/pc/${this.$route.params.category + '/' + this.$route.params.title}`))
       .then((snapshot) => {
         if (snapshot.val()) {
           this.data = snapshot.val()
         } else {
-          this.$router.push('/games')
+          this.$router.push('/')
         }
       })
       .catch(() => {

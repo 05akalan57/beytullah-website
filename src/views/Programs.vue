@@ -24,7 +24,7 @@
           </svg>
         </div>
         <router-link
-          :to="'/games/' + data.title"
+          :to="'/programs/' + data.title"
           v-for="(data, index) in filteredDatas"
           :key="index"
           class="p-4 md:w-1/2 lg:w-1/4"
@@ -119,8 +119,7 @@ export default {
   },
   computed: {
     filteredDatas() {
-      let tempDatas = Object.values(this.datas.pc.games)
-      console.log(tempDatas)
+      let tempDatas = Object.values(this.datas.pc.programs)
       if (this.search) {
         tempDatas = tempDatas.filter((data) => {
           return data.title.toUpperCase().includes(this.search.toUpperCase())

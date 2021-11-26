@@ -1,6 +1,7 @@
 import Home from './views/Home.vue'
 import Games from './views/Games.vue'
-import GameDetail from './views/GameDetail.vue'
+import Programs from './views/Programs.vue'
+import PageDetail from './views/PageDetail.vue'
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
@@ -13,8 +14,12 @@ export const routes = [
     component: Games,
   },
   {
-    path: '/games/:title',
-    component: GameDetail,
+    path: '/programs',
+    component: Programs,
+  },
+  {
+    path: '/:category/:title',
+    component: PageDetail,
   },
   {
     path: '/:path(.*)',
