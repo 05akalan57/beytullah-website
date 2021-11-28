@@ -1,103 +1,111 @@
 <template>
-  <section class="text-gray-600 body-font">
-    <div class="container px-5 mx-auto">
-      <div
-        v-if="datas == null"
-        style="border-top-color: transparent"
-        class="w-16 h-16 my-24 border-4 border-blue-400 mx-auto border-solid rounded-full animate-spin"
-      ></div>
-      <div v-else-if="datas == 'error'" class="flex flex-col my-24 text-red-600 justify-center items-center">
-        <ExclamationCircleIcon class="w-24" />
-        <h1 class="text-2xl font-bold">Veri tabanı bağlantı hastası!</h1>
+  <div class="container mx-auto w-full bg-white p-12">
+    <div class="header lg:flex items-end justify-between mb-12">
+      <div class="title">
+        <p class="text-4xl font-bold text-gray-800 mb-4">Oyunlar</p>
+        <p class="text-2xl font-light text-gray-400">En yeni pc oyunları</p>
       </div>
-      <div v-else class="flex flex-wrap">
-        <div class="w-full pt-2 relative">
+      <div v-if="datas != null && datas != 'error'" class="text-end mt-3">
+        <div class="flex flex-row w-full">
           <input
             v-model="search"
-            class="w-full border-2 h-12 text-xl px-5 rounded-lg focus:ring focus:outline-none"
-            placeholder="Ara"
+            type="text"
+            class="
+              rounded-l-lg
+              border-transparent
+              flex-1
+              appearance-none
+              border border-gray-300
+              w-full
+              py-2
+              px-4
+              bg-white
+              text-gray-700
+              placeholder-gray-400
+              shadow-sm
+              text-base
+              focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent
+            "
+            placeholder="Bir başlık girin"
           />
-          <svg class="absolute right-0 top-0 mt-6 mr-4 w-4 fill-current" viewBox="0 0 56.966 56.966">
-            <path
-              d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
-            />
-          </svg>
+          <span
+            class="
+              flex-shrink-0
+              px-4
+              py-2
+              text-base
+              font-semibold
+              text-white
+              bg-purple-600
+              rounded-r-lg
+              shadow-md
+              hover:bg-purple-700
+              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200
+            "
+          >
+            Ara
+          </span>
         </div>
-        <router-link
-          :to="'/games/' + data.title"
-          v-for="(data, index) in filteredDatas"
-          :key="index"
-          class="p-4 md:w-1/2 lg:w-1/4"
+      </div>
+    </div>
+    <div v-if="datas == null" class="grid lg:grid-cols-3 gap-12">
+      <div v-for="skeleton in 9" :key="skeleton" class="bg-white rounded-lg shadow-lg">
+        <div class="bg-gray-200 h-72 p-3 overflow-hidden animate-pulse rounded-t-lg"></div>
+        <div class="p-3">
+          <div class="grid grid-cols-1 gap-4 mt-2">
+            <div class="h-6 w-60 bg-gray-200 rounded animate-pulse"></div>
+            <div class="h-5 w-90 bg-gray-200 rounded animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-else-if="datas == 'error'">
+      <div class="flex mb-8 text-red-600">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="h-6 w-6"
+          viewBox="0 0 1792 1792"
         >
-          <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img class="lg:h-48 md:h-36 w-full object-cover object-center" :src="data.image" />
-            <div class="p-6">
-              <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ data.title }}</h1>
-              <p class="leading-relaxed mb-3">
-                {{ data.description }}
-              </p>
-              <div class="flex items-center flex-wrap">
-                <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
-                  >Detay
-                  <svg
-                    class="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
+          <path
+            d="M1024 1375v-190q0-14-9.5-23.5t-22.5-9.5h-192q-13 0-22.5 9.5t-9.5 23.5v190q0 14 9.5 23.5t22.5 9.5h192q13 0 22.5-9.5t9.5-23.5zm-2-374l18-459q0-12-10-19-13-11-24-11h-220q-11 0-24 11-10 7-10 21l17 457q0 10 10 16.5t24 6.5h185q14 0 23.5-6.5t10.5-16.5zm-14-934l768 1408q35 63-2 126-17 29-46.5 46t-63.5 17h-1536q-34 0-63.5-17t-46.5-46q-37-63-2-126l768-1408q17-31 47-49t65-18 65 18 47 49z"
+          ></path>
+        </svg>
+        <span class="ml-4 font-bold">Veri tabanı bağlantı hatası !</span>
+      </div>
+      <div class="space-y-2">
+        <p class="font-bold mt-2">Muhtemel sebepler</p>
+        <li>İnternet bağlantınızda sorun olabilir</li>
+        <li>Firebase sunucularında arıza olabilir</li>
+      </div>
+    </div>
+    <div v-else class="grid lg:grid-cols-3 gap-12">
+      <div
+        v-for="(data, index) in filteredDatas"
+        :key="index"
+        class="overflow-hidden shadow-lg rounded-lg h-90 w-full cursor-pointer m-auto"
+      >
+        <router-link :to="'/games/' + data.title" class="w-full block h-full">
+          <img alt="blog photo" :src="data.image" class="w-full h-72 object-cover" />
+          <div class="bg-white w-full p-4 space-y-2">
+            <p class="text-gray-800 text-xl font-medium">{{ data.title }}</p>
+            <p class="text-gray-400 font-light text-md">
+              {{ data.description }}
+            </p>
           </div>
         </router-link>
       </div>
     </div>
-  </section>
+  </div>
 </template>
-
-<style>
-.loader {
-  border-top-color: #3498db;
-  -webkit-animation: spinner 1.5s linear infinite;
-  animation: spinner 1.5s linear infinite;
-}
-
-@-webkit-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-</style>
 
 <script>
 import { initializeApp } from 'firebase/app'
 import { get, ref, getDatabase } from 'firebase/database'
-import { ExclamationCircleIcon } from '@heroicons/vue/outline'
-
 const app = initializeApp({ databaseURL: 'https://akalan-db.firebaseio.com' })
-
 export default {
-  components: {
-    ExclamationCircleIcon,
-  },
   data() {
     return {
       search: null,
@@ -107,11 +115,7 @@ export default {
   created() {
     get(ref(getDatabase(app), `beytullah-website`))
       .then((snapshot) => {
-        if (snapshot.val()) {
-          this.datas = snapshot.val()
-        } else {
-          this.$router.push('/')
-        }
+        this.datas = snapshot.val()
       })
       .catch(() => {
         this.datas = 'error'
@@ -120,7 +124,6 @@ export default {
   computed: {
     filteredDatas() {
       let tempDatas = Object.values(this.datas.pc.games)
-      console.log(tempDatas)
       if (this.search) {
         tempDatas = tempDatas.filter((data) => {
           return data.title.toUpperCase().includes(this.search.toUpperCase())

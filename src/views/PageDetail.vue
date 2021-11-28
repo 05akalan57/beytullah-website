@@ -1,106 +1,87 @@
 <template>
-  <div>
-    <section class="text-gray-600 body-font overflow-hidden">
-      <div class="container px-5 py-24 mx-auto">
-        <div
-          v-if="data == null"
-          style="border-top-color: transparent"
-          class="w-16 h-16 border-4 border-blue-400 mx-auto border-solid rounded-full animate-spin"
-        ></div>
-        <div v-else-if="data == 'error'" class="flex flex-col text-red-600 justify-center items-center">
-          <ExclamationCircleIcon class="w-24" />
-          <h1 class="text-2xl font-bold">Veri tabanı bağlantı hastası!</h1>
+  <div class="container mx-auto bg-white">
+    <div class="py-24 px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-32 lg:px-8 lg:grid-cols-2">
+      <div>
+        <div class="flex justify-between">
+          <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{ data.title }}</h2>
+          <a
+            :href="data.downloadLink"
+            target="__blank"
+            class="
+              flex
+              items-center
+              justify-center
+              px-4
+              py-2
+              border border-transparent
+              rounded-md
+              shadow-sm
+              text-base
+              font-medium
+              text-white
+              bg-indigo-600
+              hover:bg-indigo-700
+            "
+            >İndir</a
+          >
         </div>
-        <div v-else class="mx-auto flex flex-wrap">
-          <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-            <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ data.title }}</h1>
-            <div class="flex mb-4">
-              <a class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">Açıklama</a>
-            </div>
-            <p class="leading-relaxed mb-4">
-              {{ data.description }}
-            </p>
-            <div v-if="data.ram" class="flex border-t border-gray-200 py-2">
-              <span class="text-gray-500">Ram</span>
-              <span class="ml-auto text-gray-900">{{ data.ram }}</span>
-            </div>
-            <div v-if="data.processor" class="flex border-t border-gray-200 py-2">
-              <span class="text-gray-500">İşlemci</span>
-              <span class="ml-auto text-gray-900">{{ data.processor }}</span>
-            </div>
-            <div v-if="data.fileSize" class="flex border-t border-gray-200 py-2">
-              <span class="text-gray-500">Dosya boyutu</span>
-              <span class="ml-auto text-gray-900">{{ data.fileSize }}</span>
-            </div>
-            <div v-if="data.storage" class="flex border-t border-gray-200 py-2">
-              <span class="text-gray-500">Depolama</span>
-              <span class="ml-auto text-gray-900">{{ data.storage }}</span>
-            </div>
-            <div v-if="data.displayCard" class="flex border-t border-gray-200 py-2">
-              <span class="text-gray-500">Ekran kartı</span>
-              <span class="ml-auto text-gray-900">{{ data.displayCard }}</span>
-            </div>
-            <div v-if="data.filePassword" class="flex border-t border-gray-200 py-2">
-              <span class="text-gray-500">Rar şifresi</span>
-              <span class="ml-auto text-gray-900">{{ data.filePassword }}</span>
-            </div>
-            <div class="border-t border-gray-200 py-2"></div>
-            <div class="flex">
-              <a
-                :href="data.downloadLink"
-                target="__blank"
-                class="
-                  flex
-                  ml-auto
-                  text-white
-                  bg-indigo-500
-                  border-0
-                  py-2
-                  px-6
-                  focus:outline-none
-                  hover:bg-indigo-600
-                  rounded
-                "
-              >
-                İndir
-              </a>
-            </div>
+        <p class="mt-4 text-gray-500">
+          {{ data.description }}
+        </p>
+
+        <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
+          <div v-if="data.ram" class="border-t border-gray-200 pt-4">
+            <dt class="font-medium text-gray-900">Ram</dt>
+            <dd class="mt-2 text-sm text-gray-500">{{ data.ram }}</dd>
           </div>
-          <img class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" :src="data.image" />
-        </div>
+          <div v-if="data.storage" class="border-t border-gray-200 pt-4">
+            <dt class="font-medium text-gray-900">Depolama</dt>
+            <dd class="mt-2 text-sm text-gray-500">{{ data.storage }}</dd>
+          </div>
+          <div v-if="data.fileSize" class="border-t border-gray-200 pt-4">
+            <dt class="font-medium text-gray-900">Dosya boyutu</dt>
+            <dd class="mt-2 text-sm text-gray-500">{{ data.fileSize }}</dd>
+          </div>
+          <div v-if="data.displayCard" class="border-t border-gray-200 pt-4">
+            <dt class="font-medium text-gray-900">Ekran kartı</dt>
+            <dd class="mt-2 text-sm text-gray-500">{{ data.displayCard }}</dd>
+          </div>
+          <div v-if="data.filePassword" class="border-t border-gray-200 pt-4">
+            <dt class="font-medium text-gray-900">Dosya şifresi</dt>
+            <dd class="mt-2 text-sm text-gray-500">{{ data.filePassword }}</dd>
+          </div>
+          <div v-if="data.processor" class="border-t border-gray-200 pt-4">
+            <dt class="font-medium text-gray-900">İşlemci</dt>
+            <dd class="mt-2 text-sm text-gray-500">{{ data.processor }}</dd>
+          </div>
+        </dl>
       </div>
-    </section>
+      <img
+        :src="data.image"
+        alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
+        class="bg-gray-100 rounded-lg w-full h-full object-cover"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { initializeApp } from 'firebase/app'
 import { getDatabase, ref, get } from 'firebase/database'
-import { ExclamationCircleIcon } from '@heroicons/vue/outline'
-
 const app = initializeApp({ databaseURL: 'https://akalan-db.firebaseio.com' })
 
 export default {
-  components: {
-    ExclamationCircleIcon,
-  },
   data() {
     return {
       data: null,
     }
   },
   created() {
-    get(ref(getDatabase(app), `beytullah-website/pc/${this.$route.params.category + '/' + this.$route.params.title}`))
-      .then((snapshot) => {
-        if (snapshot.val()) {
-          this.data = snapshot.val()
-        } else {
-          this.$router.push('/')
-        }
-      })
-      .catch(() => {
-        this.data = 'error'
-      })
+    get(
+      ref(getDatabase(app), `beytullah-website/pc/${this.$route.params.category + '/' + this.$route.params.title}`)
+    ).then((snapshot) => {
+      this.data = snapshot.val()
+    })
   },
 }
 </script>

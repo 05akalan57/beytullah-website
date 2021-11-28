@@ -2,9 +2,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-html,
-body,
-#app,
-main {
-  height: 100%;
-}
+/* .container {
+  @apply border-4;
+} */

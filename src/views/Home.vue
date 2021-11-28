@@ -1,23 +1,20 @@
 <template>
-  <div class="container mx-auto flex flex-col items-center py-12 sm:py-24">
-    <div class="w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-10">
-      <h1
-        class="
-          text-2xl
-          sm:text-3xl
-          md:text-4xl
-          lg:text-5xl
-          xl:text-6xl
-          text-center text-gray-800
-          font-black
-          leading-7
-          md:leading-10
-        "
-      >
-        Bu sayfa çok
-        <span class="text-indigo-700">yakında</span>
-        kullanılacak
-      </h1>
+  <div class="container mx-auto bg-white dark:bg-gray-800 overflow-hidden relative lg:flex lg:items-center">
+    <div class="w-full py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
+      <h2 class="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
+        <span class="block"> Mother hearth host your travel </span>
+      </h2>
+      <p class="text-md mt-4 text-gray-400">
+        The state of Utah in the united states is home to lots of beautiful National parks, Bryce national canion park
+        ranks as three of the most magnificient &amp; awe inspiring.
+      </p>
+    </div>
+    <div class="flex items-center gap-8 p-8 lg:p-24">
+      <img src="https://www.tailwind-kit.com/images/landscape/3.jpg" class="rounded-lg w-1/2" alt="Tree" />
+      <div>
+        <img src="https://www.tailwind-kit.com/images/landscape/2.jpg" class="rounded-lg mb-8" alt="Tree" />
+        <img src="https://www.tailwind-kit.com/images/landscape/4.jpg" class="rounded-lg" alt="Tree" />
+      </div>
     </div>
   </div>
 </template>
