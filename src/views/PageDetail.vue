@@ -25,10 +25,6 @@
             >İndir</a
           >
         </div>
-        <p class="mt-4 text-gray-500">
-          {{ data.description }}
-        </p>
-
         <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
           <div v-if="data.ram" class="border-t border-gray-200 pt-4">
             <dt class="font-medium text-gray-900">Ram</dt>
@@ -56,11 +52,7 @@
           </div>
         </dl>
       </div>
-      <img
-        :src="data.image"
-        alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
-        class="bg-gray-100 rounded-lg w-full h-full object-cover"
-      />
+      <img :src="data.image" class="bg-gray-100 rounded-lg w-full h-full object-cover" />
     </div>
   </div>
 </template>
@@ -77,9 +69,7 @@ export default {
     }
   },
   created() {
-    get(
-      ref(getDatabase(app), `beytullah-website/pc/${this.$route.params.category + '/' + this.$route.params.title}`)
-    ).then((snapshot) => {
+    get(ref(getDatabase(app), `beytullah-website/${this.$route.params.title}`)).then((snapshot) => {
       this.data = snapshot.val()
     })
   },

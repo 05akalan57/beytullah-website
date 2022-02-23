@@ -2,8 +2,7 @@
   <div class="container mx-auto w-full bg-white p-12">
     <div class="header lg:flex items-end justify-between mb-12">
       <div class="title">
-        <p class="text-4xl font-bold text-gray-800 mb-4">Oyunlar</p>
-        <p class="text-2xl font-light text-gray-400">En yeni pc oyunları</p>
+        <p class="text-4xl font-bold text-gray-800">Oyunlar</p>
       </div>
       <div v-if="datas != null && datas != 'error'" class="text-end mt-3">
         <div class="flex flex-row w-full">
@@ -26,7 +25,7 @@
               text-base
               focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent
             "
-            placeholder="Bir başlık girin"
+            placeholder="Aranacak kelimeyi yazın"
           />
           <span
             class="
@@ -87,8 +86,8 @@
         :key="index"
         class="overflow-hidden shadow-lg rounded-lg h-90 w-full cursor-pointer m-auto"
       >
-        <router-link :to="'/games/' + data.title" class="w-full block h-full">
-          <img alt="blog photo" :src="data.image" class="w-full h-72 object-cover" />
+        <router-link :to="data.title" class="w-full block h-full">
+          <img :src="data.image" class="w-full h-72 object-cover" />
           <div class="bg-white w-full p-4 space-y-2">
             <p class="text-gray-800 text-xl font-medium">{{ data.title }}</p>
             <p class="text-gray-400 font-light text-md">
@@ -123,7 +122,7 @@ export default {
   },
   computed: {
     filteredDatas() {
-      let tempDatas = Object.values(this.datas.pc.games)
+      let tempDatas = Object.values(this.datas)
       if (this.search) {
         tempDatas = tempDatas.filter((data) => {
           return data.title.toUpperCase().includes(this.search.toUpperCase())
