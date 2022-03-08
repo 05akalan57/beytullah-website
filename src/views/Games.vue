@@ -53,7 +53,6 @@
         <div class="p-3">
           <div class="grid grid-cols-1 gap-4 mt-2">
             <div class="h-6 w-60 bg-gray-200 rounded animate-pulse"></div>
-            <div class="h-5 w-90 bg-gray-200 rounded animate-pulse"></div>
           </div>
         </div>
       </div>
@@ -90,9 +89,6 @@
           <img :src="data.image" class="w-full h-72 object-cover" />
           <div class="bg-white w-full p-4 space-y-2">
             <p class="text-gray-800 text-xl font-medium">{{ data.title }}</p>
-            <p class="text-gray-400 font-light text-md">
-              {{ data.description }}
-            </p>
           </div>
         </router-link>
       </div>
